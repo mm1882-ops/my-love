@@ -22,11 +22,21 @@
         .glow-text {
             text-shadow: 0 0 20px rgba(244, 63, 94, 0.6);
         }
+        /* لتنعيم الانتقال بين الصفحات */
+        .page {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+        .page.active {
+            display: block;
+            opacity: 1;
+        }
     </style>
 </head>
 <body class="flex items-center justify-center min-h-screen p-4">
 
-    <!-- 🔐 1. شاشة الباسورد (الغموض) -->
+    <!-- 🔐 1. شاشة الباسورد (الغموض) - الباسورد 20/10 -->
     <div id="page-1" class="fixed inset-0 z-50 bg-[#12030d] flex items-center justify-center p-4">
         <div class="glass-card max-w-md w-full p-8 rounded-3xl text-center space-y-6 shadow-2xl border-rose-500/40">
             <div class="w-20 h-20 mx-auto bg-rose-600 rounded-full flex items-center justify-center text-3xl shadow-lg shadow-rose-600/50 animate-bounce">
@@ -67,67 +77,131 @@
         </div>
     </div>
 
-    <!-- 📸 3. الصفحة الثالثة (معرض الصور الـ 10) -->
-    <div id="page-3" class="hidden max-w-3xl mx-auto w-full text-center space-y-6 p-6 glass-card rounded-3xl shadow-2xl border-rose-500/30 my-8">
-        <h2 class="text-2xl font-bold text-rose-200">أحلى ذكرياتنا سوا 📸✨</h2>
-        <p class="text-slate-300 text-sm">شوفي صورنا وضحكتنا اللي من القلب..</p>
+    <!-- 📸 3. الصفحة الثالثة (معرض الصور الـ 10 والكابشنات الكوميدية بتاعتك) -->
+    <div id="page-3" class="hidden max-w-5xl mx-auto w-full text-center space-y-6 p-6 glass-card rounded-3xl shadow-2xl border-rose-500/30 my-8">
+        <h2 class="text-3xl font-bold text-rose-200 glow-text">أحلى ذكرياتنا سوا 📸✨</h2>
+        <p class="text-slate-300 text-sm">شوفي صورنا وضحكتنا اللي من القلب.. وكمان الكلام العسل (اللي رفعتيه من التليفون 😂)!</p>
         
         <!-- شبكة الصور (10 صور مع الكابشن) -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 max-h-[60vh] overflow-y-auto p-2">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 max-h-[65vh] overflow-y-auto p-3">
+            
             <!-- صورة 1 -->
-            <div class="glass-card p-3 rounded-2xl border border-rose-500/20">
-                <img src="https://placehold.co/300x300/ffe4e6/be123c?text=صورة+1" class="rounded-xl w-full h-40 object-cover mb-2" alt="1">
-                <p class="text-xs text-rose-200 font-semibold">الكابشن الأول هنا ❤️</p>
+            <div class="glass-card p-3 rounded-2xl border border-rose-500/20 flex flex-col items-center">
+                <img src="1.jpg" class="rounded-xl w-full h-40 object-cover mb-3" alt="1" onerror="this.src='https://placehold.co/300x300/ffe4e6/be123c?text=صورة+1'">
+                <p class="text-xs text-rose-200 font-semibold leading-relaxed text-center px-1">دي كانت اول صورة لينا مع بعض و مكنتش اتخيل ان القصة دي تعيش و تكمل بس انتي تستهلي كل حاجة ❤️</p>
             </div>
+
             <!-- صورة 2 -->
-            <div class="glass-card p-3 rounded-2xl border border-rose-500/20">
-                <img src="https://placehold.co/300x300/ffe4e6/be123c?text=صورة+2" class="rounded-xl w-full h-40 object-cover mb-2" alt="2">
-                <p class="text-xs text-rose-200 font-semibold">الكابشن التاني هنا ✨</p>
+            <div class="glass-card p-3 rounded-2xl border border-rose-500/20 flex flex-col items-center">
+                <img src="2.jpg" class="rounded-xl w-full h-40 object-cover mb-3" alt="2" onerror="this.src='https://placehold.co/300x300/ffe4e6/be123c?text=صورة+2'">
+                <p class="text-xs text-rose-200 font-semibold leading-relaxed text-center px-1">اول مرة احضنك كنتي متلجلجة بس كله بالحنية بيفك 😂</p>
             </div>
+
             <!-- صورة 3 -->
-            <div class="glass-card p-3 rounded-2xl border border-rose-500/20">
-                <img src="https://placehold.co/300x300/ffe4e6/be123c?text=صورة+3" class="rounded-xl w-full h-40 object-cover mb-2" alt="3">
-                <p class="text-xs text-rose-200 font-semibold">الكابشن التالت هنا 🌸</p>
+            <div class="glass-card p-3 rounded-2xl border border-rose-500/20 flex flex-col items-center">
+                <img src="3.jpg" class="rounded-xl w-full h-40 object-cover mb-3" alt="3" onerror="this.src='https://placehold.co/300x300/ffe4e6/be123c?text=صورة+3'">
+                <p class="text-xs text-rose-200 font-semibold leading-relaxed text-center px-1">بحب الصورة دي اوي مش عارف ليه بس بجد ست مفهاش غلطة يا واد يا فخر السيدة زينب 😉</p>
             </div>
+
             <!-- صورة 4 -->
-            <div class="glass-card p-3 rounded-2xl border border-rose-500/20">
-                <img src="https://placehold.co/300x300/ffe4e6/be123c?text=صورة+4" class="rounded-xl w-full h-40 object-cover mb-2" alt="4">
-                <p class="text-xs text-rose-200 font-semibold">الكابشن الرابع هنا 🥰</p>
+            <div class="glass-card p-3 rounded-2xl border border-rose-500/20 flex flex-col items-center">
+                <img src="4.jpg" class="rounded-xl w-full h-40 object-cover mb-3" alt="4" onerror="this.src='https://placehold.co/300x300/ffe4e6/be123c?text=صورة+4'">
+                <p class="text-xs text-rose-200 font-semibold leading-relaxed text-center px-1">اول مرة احس اني كوتي حمودي يبقي كوتي كان مستحيل بس انتي معرفتيش معني الكلمة دي</p>
             </div>
+
             <!-- صورة 5 -->
-            <div class="glass-card p-3 rounded-2xl border border-rose-500/20">
-                <img src="https://placehold.co/300x300/ffe4e6/be123c?text=صورة+5" class="rounded-xl w-full h-40 object-cover mb-2" alt="5">
-                <p class="text-xs text-rose-200 font-semibold">الكابشن الخامس هنا 🤍</p>
+            <div class="glass-card p-3 rounded-2xl border border-rose-500/20 flex flex-col items-center">
+                <img src="5.jpg" class="rounded-xl w-full h-40 object-cover mb-3" alt="5" onerror="this.src='https://placehold.co/300x300/ffe4e6/be123c?text=صورة+5'">
+                <p class="text-xs text-rose-200 font-semibold leading-relaxed text-center px-1">هفضل مكمل معاكي يا ولية انتي لغاية ما تبقي عجوزة</p>
             </div>
+
             <!-- صورة 6 -->
-            <div class="glass-card p-3 rounded-2xl border border-rose-500/20">
-                <img src="https://placehold.co/300x300/ffe4e6/be123c?text=صورة+6" class="rounded-xl w-full h-40 object-cover mb-2" alt="6">
-                <p class="text-xs text-rose-200 font-semibold">الكابشن السادس هنا 🔥</p>
+            <div class="glass-card p-3 rounded-2xl border border-rose-500/20 flex flex-col items-center">
+                <img src="6.jpg" class="rounded-xl w-full h-40 object-cover mb-3" alt="6" onerror="this.src='https://placehold.co/300x300/ffe4e6/be123c?text=صورة+6'">
+                <p class="text-xs text-rose-200 font-semibold leading-relaxed text-center px-1">بحب جنونك و انتي بتبقي علي طبيعتك بتبقي مجنونة بس حلوة اوي 🥰🥰</p>
             </div>
+
             <!-- صورة 7 -->
-            <div class="glass-card p-3 rounded-2xl border border-rose-500/20">
-                <img src="https://placehold.co/300x300/ffe4e6/be123c?text=صورة+7" class="rounded-xl w-full h-40 object-cover mb-2" alt="7">
-                <p class="text-xs text-rose-200 font-semibold">الكابشن السابع هنا 💫</p>
+            <div class="glass-card p-3 rounded-2xl border border-rose-500/20 flex flex-col items-center">
+                <img src="7.jpg" class="rounded-xl w-full h-40 object-cover mb-3" alt="7" onerror="this.src='https://placehold.co/300x300/ffe4e6/be123c?text=صورة+7'">
+                <p class="text-xs text-rose-200 font-semibold leading-relaxed text-center px-1">اليوم دا انتي متعرفيش انا كنت مبسوط فيه ازاي انك كنتي معايا بس كنتي قمر اوي ❤️</p>
             </div>
+
             <!-- صورة 8 -->
-            <div class="glass-card p-3 rounded-2xl border border-rose-500/20">
-                <img src="https://placehold.co/300x300/ffe4e6/be123c?text=صورة+8" class="rounded-xl w-full h-40 object-cover mb-2" alt="8">
-                <p class="text-xs text-rose-200 font-semibold">الكابشن الثامن هنا 🌹</p>
+            <div class="glass-card p-3 rounded-2xl border border-rose-500/20 flex flex-col items-center">
+                <img src="8.jpg" class="rounded-xl w-full h-40 object-cover mb-3" alt="8" onerror="this.src='https://placehold.co/300x300/ffe4e6/be123c?text=صورة+8'">
+                <p class="text-xs text-rose-200 font-semibold leading-relaxed text-center px-1">دي بحبك اوي بس ❤️❤️❤️❤️❤️</p>
             </div>
+
             <!-- صورة 9 -->
-            <div class="glass-card p-3 rounded-2xl border border-rose-500/20">
-                <img src="https://placehold.co/300x300/ffe4e6/be123c?text=صورة+9" class="rounded-xl w-full h-40 object-cover mb-2" alt="9">
-                <p class="text-xs text-rose-200 font-semibold">الكابشن التاسع هنا 👑</p>
+            <div class="glass-card p-3 rounded-2xl border border-rose-500/20 flex flex-col items-center">
+                <img src="9.jpg" class="rounded-xl w-full h-40 object-cover mb-3" alt="9" onerror="this.src='https://placehold.co/300x300/ffe4e6/be123c?text=صورة+9'">
+                <p class="text-xs text-rose-200 font-semibold leading-relaxed text-center px-1">الله حي انا اللي جاي 🫂</p>
             </div>
+
             <!-- صورة 10 -->
-            <div class="glass-card p-3 rounded-2xl border border-rose-500/20">
-                <img src="https://placehold.co/300x300/ffe4e6/be123c?text=صورة+10" class="rounded-xl w-full h-40 object-cover mb-2" alt="10">
-                <p class="text-xs text-rose-200 font-semibold">الكابشن العاشر هنا بقا 😉</p>
+            <div class="glass-card p-3 rounded-2xl border border-rose-500/20 flex flex-col items-center">
+                <img src="10.jpg" class="rounded-xl w-full h-40 object-cover mb-3" alt="10" onerror="this.src='https://placehold.co/300x300/ffe4e6/be123c?text=صورة+10'">
+                <p class="text-xs text-rose-200 font-semibold leading-relaxed text-center px-1">اليوم اللي بحلم بيه طول عمري و باذن الله ربنا يحقق كل اللي نفسنا فيه</p>
+            </div>
+
+        </div>
+
+        <div class="pt-5 pb-2">
+            <button onclick="goToPage(4)" class="px-8 py-3 bg-gradient-to-r from-rose-600 to-pink-600 hover:from-rose-500 hover:to-pink-500 font-bold rounded-xl shadow-lg shadow-rose-600/40 transition-all transform hover:scale-105 text-lg">
+                Next ➡️
+            </button>
+        </div>
+    </div>
+
+    <!-- 🤔 4. الصفحة الرابعة (الأسئلة المشاكسة الكوميدية) -->
+    <div id="page-4" class="hidden max-w-2xl mx-auto w-full text-center space-y-8 p-6 glass-card rounded-3xl shadow-2xl border-rose-500/30">
+        <h2 class="text-3xl font-bold text-rose-200 glow-text">وصلنا للجد! أسئلة حمصي مشاكسة 😂</h2>
+        <p class="text-slate-300 text-sm">جاوبي بصراحة يا حمودي.. متكسفنيش!</p>
+        
+        <div class="space-y-10 text-right p-4">
+            
+            <!-- سؤال 1 -->
+            <div class="space-y-4">
+                <p class="text-xl font-bold text-rose-100">1. مين فينا بيحب التاني أكتر؟ (الحقيقة المرة)</p>
+                <div class="grid grid-cols-2 gap-4">
+                    <button class="answer-btn px-5 py-3 rounded-xl bg-black/50 border border-rose-500/30 hover:bg-rose-900/40 transition text-sm">أنا طبعاً! ❤️</button>
+                    <button class="answer-btn px-5 py-3 rounded-xl bg-black/50 border border-rose-500/30 hover:bg-rose-900/40 transition text-sm">هو حمودي بصراحة 😜</button>
+                    <button class="answer-btn px-5 py-3 rounded-xl bg-black/50 border border-rose-500/30 hover:bg-rose-900/40 transition text-sm col-span-2">إحنا الاتنين قـد بعـض (إجابة دبلوماسية) 🥰</button>
+                </div>
+            </div>
+
+            <!-- سؤال 2 -->
+            <div class="space-y-4">
+                <p class="text-xl font-bold text-rose-100">2. مين اللي دايماً بيصعبن فينا ويطلع هو الغلبان؟ 😂</p>
+                <div class="grid grid-cols-2 gap-4">
+                    <button class="answer-btn px-5 py-3 rounded-xl bg-black/50 border border-rose-500/30 hover:bg-rose-900/40 transition text-sm">أنا "دلع البنات" بقا 😉</button>
+                    <button class="answer-btn px-5 py-3 rounded-xl bg-black/50 border border-rose-500/30 hover:bg-rose-900/40 transition text-sm">هو "الحنين الأبدي" حمودي</button>
+                    <button class="answer-btn px-5 py-3 rounded-xl bg-black/50 border border-rose-500/30 hover:bg-rose-900/40 transition text-sm col-span-2">إحنا الاتنين غلابة بصراحة 🤝</button>
+                </div>
+            </div>
+
+            <!-- سؤال 3 (المفتوح) -->
+            <div class="space-y-4">
+                <p class="text-xl font-bold text-rose-100">3. قولي لي حاجة واحدة بجد من قلبك، تتمني إيه يحصل في عيد ميلادك الجاي؟ 🤍</p>
+                <textarea rows="4" placeholder="اكتبي إجابتك هنا.. أي حاجة وكل حاجة 🥰" class="w-full px-5 py-3 rounded-xl bg-black/50 border border-rose-500/40 text-rose-200 focus:outline-none focus:border-rose-500 font-bold text-lg"></textarea>
             </div>
         </div>
 
-        <div class="pt-2">
-            <button onclick="alert('جاهزين للخطوة الجاية: صفحة الأسئلة المشاكسة!')" class="px-8 py-3 bg-gradient-to-r from-rose-600 to-pink-600 hover:from-rose-500 hover:to-pink-500 font-bold rounded-xl shadow-lg shadow-rose-600/40 transition-all transform hover:scale-105">
+        <div class="pt-6 pb-2">
+            <button onclick="goToPage(5)" class="px-8 py-3 bg-gradient-to-r from-rose-600 to-pink-600 hover:from-rose-500 hover:to-pink-500 font-bold rounded-xl shadow-lg shadow-rose-600/40 transition-all transform hover:scale-105 text-lg">
+                يا مسهرني ➡️
+            </button>
+        </div>
+    </div>
+
+    <!-- 🎉 5. الصفحة الخامسة والاخيرة (تحميل) -->
+    <div id="page-5" class="hidden max-w-xl mx-auto w-full text-center space-y-8 p-6 glass-card rounded-3xl shadow-2xl border-rose-500/30">
+        <div class="text-5xl animate-spin">⏳</div>
+        <h2 class="text-2xl font-black text-rose-200">ثانية واحدة بس.. بنجهز لك المفاجأة الأخيرة يا حب!</h2>
+        <p class="text-slate-300">لحظة كدة وهتسمعي صوتي ومعاه الأغنية اللي على ذوقنا...</p>
+        <div class="pt-4">
+            <button onclick="alert('جاهزين للخطوة الأخيرة: الأغنية والعداد والصوت والفيشة! 🔥')" class="px-8 py-3 bg-gradient-to-r from-rose-600 to-pink-600 hover:from-rose-500 hover:to-pink-500 font-bold rounded-xl shadow-lg shadow-rose-600/40 transition-all transform hover:scale-105 text-lg">
                 Next ➡️
             </button>
         </div>
@@ -140,7 +214,8 @@
             const input = document.getElementById('pass-input').value.trim();
             if (input === CORRECT_PASS || input === "2010") {
                 document.getElementById('page-1').style.display = 'none';
-                document.getElementById('page-2').classList.remove('hidden');
+                document.getElementById('page-2').style.display = 'block';
+                document.getElementById('page-2').classList.add('active');
             } else {
                 document.getElementById('error-msg').classList.remove('hidden');
             }
@@ -148,12 +223,27 @@
 
         function goToPage(pageNum) {
             // إخفاء كل الصفحات
-            document.getElementById('page-2').classList.add('hidden');
-            document.getElementById('page-3').classList.add('hidden');
+            const pages = document.querySelectorAll('.page, div[id^="page-"]');
+            pages.forEach(page => {
+                if (page.id !== "page-1") { // شاشة الباسورد مخفية دايماً
+                    page.style.display = 'none';
+                    page.classList.remove('active');
+                }
+            });
             
             // إظهار الصفحة المطلوبة
-            document.getElementById('page-' + pageNum).classList.remove('hidden');
+            const nextPage = document.getElementById('page-' + pageNum);
+            nextPage.style.display = 'block';
+            setTimeout(() => nextPage.classList.add('active'), 10); // للتأكد من عمل التنعيم
         }
+
+        // إضافة تفاعل للأزرار (مجرد شكل عند الضغط)
+        document.querySelectorAll('.answer-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                this.classList.toggle('bg-rose-800');
+                this.classList.toggle('border-rose-500');
+            });
+        });
     </script>
 </body>
 </html>
