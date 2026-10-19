@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday My Love ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Cairo', sans-serif;
+        }
+        body {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+        }
+        .container {
+            width: 100%;
+            max-width: 500px;
+            padding: 20px;
+            text-align: center;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px 20px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            position: relative;
+        }
+        /* شاشة الباسورد */
+        #password-screen h2 {
+            color: #d63384;
+            margin-bottom: 15px;
+        }
+        #password-screen input {
+            width: 80%;
+            padding: 12px;
+            border: 2px solid #ff758c;
+            border-radius: 10px;
+            font-size: 16px;
+            text-align: center;
+            margin-bottom: 15px;
+            outline: none;
+        }
+        .btn {
+            background: linear-gradient(to right, #ff758c, #ff7eb3);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 117, 140, 0.4);
+            transition: 0.3s;
+        }
+        .btn:hover {
+            transform: scale(1.05);
+        }
+        #error-msg {
+            color: #e63946;
+            margin-top: 10px;
+            font-size: 14px;
+            display: none;
+        }
+
+        /* المحتوى الأساسي */
+        .main-content {
+            display: none;
+        }
+        .hb-title {
+            font-size: 32px;
+            color: #d63384;
+            font-weight: 900;
+            animation: bounce 1.5s infinite;
+            margin-bottom: 10px;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+        .heart-icon {
+            font-size: 40px;
+            animation: pulse 1s infinite;
+            margin-bottom: 15px;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1.1); }
+        }
+        
+        /* العدادات */
+        .counters-box {
+            background: #fff0f3;
+            border-radius: 15px;
+            padding: 15px;
+            margin: 15px 0;
+            border: 1px dashed #ff758c;
+        }
+        .counter-title {
+            font-size: 14px;
+            color: #b5179e;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .counter-val {
+            font-size: 16px;
+            color: #333;
+            font-weight: 700;
+        }
+
+        /* الصور */
+        .photos-slider {
+            margin: 20px 0;
+            position: relative;
+        }
+        .photo-frame {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 4px solid white;
+        }
+
+        /* رسالة الحب */
+        .love-message {
+            background: #fff;
+            padding: 15px;
+            border-radius: 12px;
+            margin: 20px 0;
+            line-height: 1.8;
+            color: #555;
+            font-size: 15px;
+            border-right: 4px solid #ff758c;
+        }
+
+        /* الأسئلة التفاعلية (الشغل الحمصي) */
+        .quiz-box {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 12px;
+            margin-top: 20px;
+        }
+        .quiz-question {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .quiz-options button {
+            background: #e9ecef;
+            border: none;
+            padding: 8px 15px;
+            margin: 5px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+        .quiz-options button:hover {
+            background: #ff758c;
+            color: white;
+        }
+        #quiz-result {
+            margin-top: 10px;
+            font-weight: bold;
+            color: #d63384;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- 1. شاشة الباسورد -->
+        <div class="card" id="password-screen">
+            <h2>مفاجأة لعيونك ❤️</h2>
+            <p style="margin-bottom: 15px; color: #666; font-size: 14px;">دخلِ الباسورد عشان تفتحي الهدية:</p>
+            <input type="password" id="pass-input" placeholder="اكتبي الباسورد هنا...">
+            <br>
+            <button class="btn" onclick="checkPassword()">دخول</button>
+            <div id="error-msg">الباسورد غلط يا حب! جربي تاني 😜</div>
+        </div>
+
+        <!-- 2. المحتوى الأساسي -->
+        <div class="card main-content" id="main-content">
+            <div class="heart-icon">❤️</div>
+            <div class="hb-title">Happy Birthday To You! 🎉</div>
+            
+            <!-- العدادات الزمنية -->
+            <div class="counters-box">
+                <div class="counter-title">⏳ إحنا مع بعض من:</div>
+                <div class="counter-val" id="rel-counter">جاري الحساب...</div>
+            </div>
+
+            <div class="counters-box">
+                <div class="counter-title">💍 متبقي على عيد ميلادك والخطوبة بإذن الله:</div>
+                <div class="counter-val" id="bd-counter">جاري الحساب...</div>
+            </div>
+
+            <!-- صور الذكريات -->
+            <div class="photos-slider">
+                <!-- 💡 تقدر تحط روابط صور حقيقية أو أسماء الصور اللي في نفس الفولدر -->
+                <img id="current-photo" src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=500&auto=format&fit=crop&q=60" class="photo-frame" alt="Memory">
+            </div>
+            <button class="btn" style="padding: 6px 15px; font-size: 14px; margin-bottom: 15px;" onclick="nextPhoto()">صورة كمان 📸</button>
+
+            <!-- رسالة منك -->
+            <div class="love-message" id="custom-message">
+                <!-- 💡 اكتب كلامك هنا -->
+                كل سنة وأنتِ أقرب لقلبي، وأحلى حاجة حصلت في حياتي كلها.. ربنا يديمك ليا يا سندريلا عمري ويجمعنا في بيت واحد قريب جداً ❤️
+            </div>
+
+            <!-- الأسئلة التفاعلية (الشغل الحمصي) -->
+            <div class="quiz-box">
+                <div class="quiz-question">سؤال خفيف: مين بيحب التاني أكتر؟ 🤔</div>
+                <div class="quiz-options">
+                    <button onclick="answerQuiz(1)">أنتِ أكتر طبعا</button>
+                    <button onclick="answerQuiz(2)">أنا أكتر بكتير</button>
+                </div>
+                <div id="quiz-result"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 🎵 الأغنية (حط رابط الأغنية هنا أو ملف صوتي) -->
+    <audio id="bday-song" loop>
+        <source src="YOUR_SONG_LINK_HERE.mp3" type="audio/mpeg">
+        متصفحك مش بيجيب الصوت.
+    </audio>
+
+    <script>
+        // 🔐 **1. تعديل الباسورد هنا:**
+        const correctPassword = "123"; // غيره لأي باسورد تحبه (تاريخ خطوبة، عيد ميلادها، الخ)
+
+        function checkPassword() {
+            const inputVal = document.getElementById('pass-input').value;
+            const errorMsg = document.getElementById('error-msg');
+            
+            if(inputVal === correctPassword) {
+                document.getElementById('password-screen').style.display = 'none';
+                document.getElementById('main-content').style.display = 'block';
+                
+                // تشغيل الأغنية
+                const song = document.getElementById('bday-song');
+                song.play().catch(e => console.log("Autoplay blocked:", e));
+            } else {
+                errorMsg.style.display = 'block';
+            }
+        }
+
+        // 📸 **2. صور الذكريات (روابط الصور بتاعتكم):**
+        const photos = [
+            "https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=500&auto=format&fit=crop&q=60", // صورة 1
+            "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=500&auto=format&fit=crop&q=60", // صورة 2
+            "https://images.unsplash.com/photo-1494774157365-9e04c6720e47?w=500&auto=format&fit=crop&q=60"  // صورة 3
+        ];
+        let currentPhotoIdx = 0;
+
+        function nextPhoto() {
+            currentPhotoIdx = (currentPhotoIdx + 1) % photos.length;
+            document.getElementById('current-photo').src = photos[currentPhotoIdx];
+        }
+
+        // ⏳ **3. حساب العدادات:**
+        // تاريخ بداية العلاقة (عدل السنة والشهر واليوم)
+        const relStartDate = new Date("2024-01-01T00:00:00");
+        // تاريخ عيد الميلاد / الخطوبة القادم (5 نوفمبر)
+        const targetDate = new Date("2026-11-05T00:00:00"); 
+
+        function updateCounters() {
+            const now = new Date();
+
+            // عداد العلاقة
+            const diffRel = now - relStartDate;
+            const daysRel = Math.floor(diffRel / (1000 * 60 * 60 * 24));
+            document.getElementById('rel-counter').innerText = `${daysRel} يوم من الحب والسعادة ❤️`;
+
+            // عداد عيد الميلاد والخطوبة
+            const diffTarget = targetDate - now;
+            if(diffTarget > 0) {
+                const daysTarget = Math.floor(diffTarget / (1000 * 60 * 60 * 24));
+                const hoursTarget = Math.floor((diffTarget % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                document.getElementById('bd-counter').innerText = `${daysTarget} يوم و ${hoursTarget} ساعة بس! 🥳`;
+            } else {
+                document.getElementById('bd-counter').innerText = "النهارده أحلى عيد ميلاد وأحلى خطوبة! 🎉💍";
+            }
+        }
+        setInterval(updateCounters, 1000);
+        updateCounters();
+
+        // 💬 **4. الأسئلة التفاعلية:**
+        function answerQuiz(choice) {
+            const resultDiv = document.getElementById('quiz-result');
+            if(choice === 1) {
+                resultDiv.innerHTML = "إجابة صحيحة بنسبة 100%، ما شاء الله عليك فاهمها صح 😂❤️";
+            } else {
+                resultDiv.innerHTML = "محاولة خادعة! طبعاً هي اللي بتحب أكتر بكتير 😜❤️";
+            }
+        }
+    </script>
+</body>
+</html>
