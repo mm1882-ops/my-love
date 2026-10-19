@@ -26,14 +26,8 @@
 </head>
 <body class="flex items-center justify-center min-h-screen p-4">
 
-    <!-- 🎵 مشغل يوتيوب مخفي (أغنية العسيلي) -->
-    <iframe id="yt-player" class="hidden" width="0" height="0" 
-            src="https://www.youtube.com/embed/lDMrnbizHWU?enablejsapi=1&loop=1&playlist=lDMrnbizHWU" 
-            allow="autoplay">
-    </iframe>
-
     <!-- 🔐 1. شاشة الباسورد (الغموض) -->
-    <div id="lock-screen" class="fixed inset-0 z-50 bg-[#12030d] flex items-center justify-center p-4">
+    <div id="page-1" class="fixed inset-0 z-50 bg-[#12030d] flex items-center justify-center p-4">
         <div class="glass-card max-w-md w-full p-8 rounded-3xl text-center space-y-6 shadow-2xl border-rose-500/40">
             <div class="w-20 h-20 mx-auto bg-rose-600 rounded-full flex items-center justify-center text-3xl shadow-lg shadow-rose-600/50 animate-bounce">
                 🎁
@@ -43,7 +37,7 @@
                 <p class="text-slate-300 text-sm leading-relaxed">اكتبي تاريخ أول مرة اتكلمنا فيها سناب أو واتس 📅</p>
             </div>
             <div class="space-y-4">
-                <input type="text" id="pass-input" placeholder="اكتبي الباسورد هنا (مثلاً 20/10)..." class="w-full px-5 py-3 rounded-xl bg-black/50 border border-rose-500/40 text-center text-rose-200 focus:outline-none focus:border-rose-500 font-bold text-lg">
+                <input type="text" id="pass-input" placeholder="اكتبي الباسورد هنا..." class="w-full px-5 py-3 rounded-xl bg-black/50 border border-rose-500/40 text-center text-rose-200 focus:outline-none focus:border-rose-500 font-bold text-lg">
                 <button onclick="checkPassword()" class="w-full py-3 bg-gradient-to-r from-rose-600 to-pink-600 hover:from-rose-500 hover:to-pink-500 font-bold rounded-xl shadow-lg shadow-rose-600/40 transition-all transform hover:scale-[1.02]">
                     افتحي الهدية ✨
                 </button>
@@ -52,7 +46,7 @@
         </div>
     </div>
 
-    <!-- 🎉 2. الصفحة الثانية (الترحيب والأغنية والزينة) -->
+    <!-- 🎉 2. الصفحة الثانية (الترحيب والزينة) -->
     <div id="page-2" class="hidden max-w-xl mx-auto w-full text-center space-y-8 p-6 glass-card rounded-3xl shadow-2xl border-rose-500/30">
         <div class="text-5xl animate-bounce">🎉❤️🎈</div>
         
@@ -67,27 +61,98 @@
         </div>
 
         <div class="pt-4">
-            <button onclick="alert('جاهزين للخطوة الجاية: صفحة الـ 10 صور!')" class="px-8 py-3 bg-gradient-to-r from-rose-600 to-pink-600 hover:from-rose-500 hover:to-pink-500 font-bold rounded-xl shadow-lg shadow-rose-600/40 transition-all transform hover:scale-105">
+            <button onclick="goToPage(3)" class="px-8 py-3 bg-gradient-to-r from-rose-600 to-pink-600 hover:from-rose-500 hover:to-pink-500 font-bold rounded-xl shadow-lg shadow-rose-600/40 transition-all transform hover:scale-105">
+                Next ➡️
+            </button>
+        </div>
+    </div>
+
+    <!-- 📸 3. الصفحة الثالثة (معرض الصور الـ 10) -->
+    <div id="page-3" class="hidden max-w-3xl mx-auto w-full text-center space-y-6 p-6 glass-card rounded-3xl shadow-2xl border-rose-500/30 my-8">
+        <h2 class="text-2xl font-bold text-rose-200">أحلى ذكرياتنا سوا 📸✨</h2>
+        <p class="text-slate-300 text-sm">شوفي صورنا وضحكتنا اللي من القلب..</p>
+        
+        <!-- شبكة الصور (10 صور مع الكابشن) -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 max-h-[60vh] overflow-y-auto p-2">
+            <!-- صورة 1 -->
+            <div class="glass-card p-3 rounded-2xl border border-rose-500/20">
+                <img src="https://placehold.co/300x300/ffe4e6/be123c?text=صورة+1" class="rounded-xl w-full h-40 object-cover mb-2" alt="1">
+                <p class="text-xs text-rose-200 font-semibold">الكابشن الأول هنا ❤️</p>
+            </div>
+            <!-- صورة 2 -->
+            <div class="glass-card p-3 rounded-2xl border border-rose-500/20">
+                <img src="https://placehold.co/300x300/ffe4e6/be123c?text=صورة+2" class="rounded-xl w-full h-40 object-cover mb-2" alt="2">
+                <p class="text-xs text-rose-200 font-semibold">الكابشن التاني هنا ✨</p>
+            </div>
+            <!-- صورة 3 -->
+            <div class="glass-card p-3 rounded-2xl border border-rose-500/20">
+                <img src="https://placehold.co/300x300/ffe4e6/be123c?text=صورة+3" class="rounded-xl w-full h-40 object-cover mb-2" alt="3">
+                <p class="text-xs text-rose-200 font-semibold">الكابشن التالت هنا 🌸</p>
+            </div>
+            <!-- صورة 4 -->
+            <div class="glass-card p-3 rounded-2xl border border-rose-500/20">
+                <img src="https://placehold.co/300x300/ffe4e6/be123c?text=صورة+4" class="rounded-xl w-full h-40 object-cover mb-2" alt="4">
+                <p class="text-xs text-rose-200 font-semibold">الكابشن الرابع هنا 🥰</p>
+            </div>
+            <!-- صورة 5 -->
+            <div class="glass-card p-3 rounded-2xl border border-rose-500/20">
+                <img src="https://placehold.co/300x300/ffe4e6/be123c?text=صورة+5" class="rounded-xl w-full h-40 object-cover mb-2" alt="5">
+                <p class="text-xs text-rose-200 font-semibold">الكابشن الخامس هنا 🤍</p>
+            </div>
+            <!-- صورة 6 -->
+            <div class="glass-card p-3 rounded-2xl border border-rose-500/20">
+                <img src="https://placehold.co/300x300/ffe4e6/be123c?text=صورة+6" class="rounded-xl w-full h-40 object-cover mb-2" alt="6">
+                <p class="text-xs text-rose-200 font-semibold">الكابشن السادس هنا 🔥</p>
+            </div>
+            <!-- صورة 7 -->
+            <div class="glass-card p-3 rounded-2xl border border-rose-500/20">
+                <img src="https://placehold.co/300x300/ffe4e6/be123c?text=صورة+7" class="rounded-xl w-full h-40 object-cover mb-2" alt="7">
+                <p class="text-xs text-rose-200 font-semibold">الكابشن السابع هنا 💫</p>
+            </div>
+            <!-- صورة 8 -->
+            <div class="glass-card p-3 rounded-2xl border border-rose-500/20">
+                <img src="https://placehold.co/300x300/ffe4e6/be123c?text=صورة+8" class="rounded-xl w-full h-40 object-cover mb-2" alt="8">
+                <p class="text-xs text-rose-200 font-semibold">الكابشن الثامن هنا 🌹</p>
+            </div>
+            <!-- صورة 9 -->
+            <div class="glass-card p-3 rounded-2xl border border-rose-500/20">
+                <img src="https://placehold.co/300x300/ffe4e6/be123c?text=صورة+9" class="rounded-xl w-full h-40 object-cover mb-2" alt="9">
+                <p class="text-xs text-rose-200 font-semibold">الكابشن التاسع هنا 👑</p>
+            </div>
+            <!-- صورة 10 -->
+            <div class="glass-card p-3 rounded-2xl border border-rose-500/20">
+                <img src="https://placehold.co/300x300/ffe4e6/be123c?text=صورة+10" class="rounded-xl w-full h-40 object-cover mb-2" alt="10">
+                <p class="text-xs text-rose-200 font-semibold">الكابشن العاشر هنا بقا 😉</p>
+            </div>
+        </div>
+
+        <div class="pt-2">
+            <button onclick="alert('جاهزين للخطوة الجاية: صفحة الأسئلة المشاكسة!')" class="px-8 py-3 bg-gradient-to-r from-rose-600 to-pink-600 hover:from-rose-500 hover:to-pink-500 font-bold rounded-xl shadow-lg shadow-rose-600/40 transition-all transform hover:scale-105">
                 Next ➡️
             </button>
         </div>
     </div>
 
     <script>
-        // 🔑 الباسورد المحدّث
         const CORRECT_PASS = "20/10";
 
         function checkPassword() {
             const input = document.getElementById('pass-input').value.trim();
-            if (input === CORRECT_PASS || input === "2010") { // حطيت الاحتمالين عشان لو كتبتها بالشرطة أو من غيرها تشتغل
-                document.getElementById('lock-screen').style.display = 'none';
+            if (input === CORRECT_PASS || input === "2010") {
+                document.getElementById('page-1').style.display = 'none';
                 document.getElementById('page-2').classList.remove('hidden');
-                
-                const iframe = document.getElementById('yt-player');
-                iframe.src += "&autoplay=1";
             } else {
                 document.getElementById('error-msg').classList.remove('hidden');
             }
+        }
+
+        function goToPage(pageNum) {
+            // إخفاء كل الصفحات
+            document.getElementById('page-2').classList.add('hidden');
+            document.getElementById('page-3').classList.add('hidden');
+            
+            // إظهار الصفحة المطلوبة
+            document.getElementById('page-' + pageNum).classList.remove('hidden');
         }
     </script>
 </body>
