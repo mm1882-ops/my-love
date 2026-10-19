@@ -136,10 +136,10 @@
         </div>
     </div>
 
-    <!-- 🤔 4. الصفحة الرابعة (الأسئلة المشاكسة مع الردود الفورية) -->
+    <!-- 🤔 4. الصفحة الرابعة (الأسئلة مع التعديل الجديد) -->
     <div id="page-4" class="hidden max-w-2xl mx-auto w-full text-center space-y-8 p-6 glass-card rounded-3xl shadow-2xl border-rose-500/30">
-        <h2 class="text-3xl font-bold text-rose-200 glow-text">وصلنا للجد! أسئلة حمصي مشاكسة 😂</h2>
-        <p class="text-slate-300 text-sm">جاوبي بصراحة يا حمودي.. وشوفي الرد بنفسك! 🤫</p>
+        <h2 class="text-3xl font-bold text-rose-200 glow-text">وصلنا للجد! أسئلة مهمة جدا جدا 😂</h2>
+        <p class="text-slate-300 text-sm">جاوبي بصراحة يا قلب حمودي.. متكسفنيش يا كوتي يا قميل! 🤫</p>
         
         <div class="space-y-8 text-right p-2">
             
@@ -165,7 +165,7 @@
                 <p id="feedback-q2" class="text-sm font-bold text-rose-300 mt-1 min-h-[24px]"></p>
             </div>
 
-            <!-- السؤال الثالث (المعدل) -->
+            <!-- السؤال الثالث -->
             <div class="space-y-3">
                 <p class="text-lg font-bold text-rose-100">3. ايه اللي نفسك فيه و ايه اكتر لحظة كنتي مرتاحة فيها معايا؟ 🤍</p>
                 <textarea id="q3-text" rows="3" placeholder="اكتبي إجابتك هنا بقلبك 🥰" class="w-full px-4 py-3 rounded-xl bg-black/50 border border-rose-500/40 text-rose-200 focus:outline-none focus:border-rose-500 font-semibold text-base"></textarea>
@@ -214,7 +214,7 @@
 
     <script>
         const CORRECT_PASS = "20/10";
-        const MY_PHONE_NUMBER = "201097277834"; // رقمك الذي طلبته
+        const MY_PHONE_NUMBER = "201097277834";
 
         let answers = {
             q1: 'لم يتم الاختيار',
@@ -254,12 +254,10 @@
         function selectAnswer(questionKey, answerValue, isCorrect, btnElement) {
             answers[questionKey] = answerValue;
             
-            // تحديد الزرار المختار وإلغاء الباقي في نفس السؤال
             const parentDiv = btnElement.parentElement;
             parentDiv.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
             btnElement.classList.add('selected');
 
-            // إظهار الرد الفوري حسب الإجابة
             const feedbackEl = document.getElementById('feedback-' + questionKey);
             if (questionKey === 'q1') {
                 if (isCorrect) {
@@ -283,7 +281,6 @@
         function sendAnswersAndNext() {
             answers.q3 = document.getElementById('q3-text').value.trim() || 'لا يوجد إجابة';
 
-            // تجهيز رسالة الواتساب
             const message = `إجابات الأسئلة من موقع عيد الميلاد ❤️:\n\n1. مين بيحب التاني أكتر؟\n👈 ${answers.q1}\n\n2. مين اللي بيصعبن ويطلع غلبان؟\n👈 ${answers.q2}\n\n3. إيه اللي نفسك فيه وأكتر لحظة كنتي مرتاحة فيها:\n👈 ${answers.q3}`;
 
             const whatsappUrl = `https://wa.me/${MY_PHONE_NUMBER}?text=${encodeURIComponent(message)}`;
