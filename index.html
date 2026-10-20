@@ -179,7 +179,7 @@
         </div>
     </div>
 
-    <!-- 👑 5. الصفحة الخامسة والأخيرة (العدادين + فويس النوت My love.mp3) -->
+    <!-- 👑 5. الصفحة الخامسة والأخيرة (العدادين + الفويس نوت) -->
     <div id="page-5" class="hidden max-w-xl mx-auto w-full text-center space-y-6 p-6 glass-card rounded-3xl shadow-2xl border-rose-500/30 my-8">
         
         <div class="space-y-2">
@@ -204,26 +204,26 @@
             </div>
         </div>
 
-        <!-- 🎤 مشغل الفويس نوت (My love.mp3) -->
+        <!-- 🎤 مشغل الفويس نوت (My love.mp3) مع تفاعل الأغنية -->
         <div class="glass-card p-4 rounded-2xl border border-rose-500/30 space-y-2 bg-gradient-to-b from-rose-950/20 to-black/40">
             <div class="flex items-center justify-center space-x-2 space-x-reverse">
                 <span class="text-lg">🎤</span>
                 <p class="text-xs font-bold text-rose-200">فويس نوت مخصوص عشانك 💌</p>
             </div>
             <div class="bg-black/40 p-2 rounded-xl border border-rose-500/20">
-                <audio controls class="w-full h-9 outline-none">
+                <audio id="voice-note" controls class="w-full h-9 outline-none">
                     <source src="My love.mp3" type="audio/mpeg">
                     متصفحك لا يدعم تشغيل الصوت
                 </audio>
             </div>
         </div>
 
-        <!-- 🎶 أغنية الخلفية -->
-        <audio id="bg-music" loop>
-            <source src="song.mp3" type="audio/mpeg">
-        </audio>
-
     </div>
+
+    <!-- 🎶 أغنية الخلفية (تعمل تلقائياً وتتكرر، وتتوقف أثناء تشغيل الفويس نوت) -->
+    <audio id="bg-music" loop>
+        <source src="song.mp3" type="audio/mpeg">
+    </audio>
 
     <script>
         const CORRECT_PASS = "20/10";
@@ -241,6 +241,10 @@
                 document.getElementById('page-1').style.display = 'none';
                 document.getElementById('page-2').style.display = 'block';
                 document.getElementById('page-2').classList.add('active');
+
+                // تشغيل الأغنية تلقائياً من أول الدخول للصفحة الثانية وتتكرر لوحدها
+                const music = document.getElementById('bg-music');
+                music.play().catch(e => console.log("Auto-play prevented by browser"));
             } else {
                 document.getElementById('error-msg').classList.remove('hidden');
             }
@@ -261,8 +265,6 @@
 
             if (pageNum === 5) {
                 startCounters();
-                const music = document.getElementById('bg-music');
-                music.play().catch(e => console.log("Auto-play prevented by browser"));
             }
         }
 
@@ -317,9 +319,34 @@
                 const diffDays2 = Math.ceil(diffTime2 / (1000 * 60 * 60 * 24));
                 document.getElementById('counter-2').innerText = `باقي ${diffDays2} يوم على أحلى يوم في عمري 💍✨`;
             } else {
-                document.getElementById('counter-2').innerText = `جه أحلى يوم في عمر حمودي خلاص! 🥰💍`;
+                `جه أحلى يوم في عمر حمودي خلاص! 🥰💍`;
             }
         }
+
+        // تفاعل الأغنية مع الفويس نوت (تتوقف أثناء تشغيل الفويس وتكمل بعده)
+        const bgMusic = document.getElementById('bg-music');
+        const voiceNote = document.getElementById('voice-note');
+
+        voiceNote.addEventListener('play', () => {
+            if (!bgMusic.paused) {
+                bgMusic.pause();
+                bgMusic.dataset.wasPlaying = "true";
+            }
+        });
+
+        voiceNote.addEventListener('pause', () => {
+            if (bgMusic.dataset.wasPlaying === "true") {
+                bgMusic.play().catch(e => console.log(e));
+                bgMusic.dataset.wasPlaying = "false";
+            }
+        });
+
+        voiceNote.addEventListener('ended', () => {
+            if (bgMusic.dataset.wasPlaying === "true") {
+                bgMusic.play().catch(e => console.log(e));
+                bgMusic.dataset.wasPlaying = "false";
+            }
+        });
     </script>
 </body>
 </html>
