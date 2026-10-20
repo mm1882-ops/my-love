@@ -179,7 +179,7 @@
         </div>
     </div>
 
-    <!-- 👑 5. الصفحة الخامسة والأخيرة (بالعدادين وفويس النوت) -->
+    <!-- 👑 5. الصفحة الخامسة والأخيرة (العدادين + فويس النوت My love.mp3) -->
     <div id="page-5" class="hidden max-w-xl mx-auto w-full text-center space-y-6 p-6 glass-card rounded-3xl shadow-2xl border-rose-500/30 my-8">
         
         <div class="space-y-2">
@@ -188,7 +188,7 @@
             <p class="text-slate-300 text-sm">دي المفاجأة الأخيرة لعيونك يا حب.. 💖</p>
         </div>
 
-        <!-- ⏳ العداد الأول: من أكتوبر 2024 وإلى مالا نهاية -->
+        <!-- ⏳ العداد الأول -->
         <div class="glass-card p-4 rounded-2xl border border-rose-500/30 space-y-1 bg-gradient-to-b from-rose-950/20 to-black/40">
             <p class="text-xs font-bold text-rose-300">⏳ من 20 أكتوبر 2024 وإلى مالا نهاية (العمر كله مع بعض)</p>
             <div id="counter-1" class="text-base font-black text-rose-100 glow-text">
@@ -196,7 +196,7 @@
             </div>
         </div>
 
-        <!-- 💍 العداد الثاني: لحد تاريخ الخطوبة 5/11/2027 -->
+        <!-- 💍 العداد الثاني -->
         <div class="glass-card p-4 rounded-2xl border border-rose-500/30 space-y-1 bg-gradient-to-b from-rose-950/20 to-black/40">
             <p class="text-xs font-bold text-amber-300">💍 احلي تاريخ في عمر حمودي (تاريخ خطوبتنا باذن الله)</p>
             <div id="counter-2" class="text-base font-black text-amber-100 glow-text">
@@ -204,7 +204,7 @@
             </div>
         </div>
 
-        <!-- 🎤 مشغل الصوت (Voice Note) -->
+        <!-- 🎤 مشغل الفويس نوت (My love.mp3) -->
         <div class="glass-card p-4 rounded-2xl border border-rose-500/30 space-y-2 bg-gradient-to-b from-rose-950/20 to-black/40">
             <div class="flex items-center justify-center space-x-2 space-x-reverse">
                 <span class="text-lg">🎤</span>
@@ -212,8 +212,7 @@
             </div>
             <div class="bg-black/40 p-2 rounded-xl border border-rose-500/20">
                 <audio controls class="w-full h-9 outline-none">
-                    <!-- حط رابط الفويس نوت هنا مستقبلاً -->
-                    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+                    <source src="My love.mp3" type="audio/mpeg">
                     متصفحك لا يدعم تشغيل الصوت
                 </audio>
             </div>
@@ -221,15 +220,8 @@
 
         <!-- 🎶 أغنية الخلفية -->
         <audio id="bg-music" loop>
-            <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mpeg">
+            <source src="song.mp3" type="audio/mpeg">
         </audio>
-
-        <!-- 🎉 زرار الاحتفال النهائي -->
-        <div class="pt-2">
-            <button onclick="playMusicAndCelebrate()" class="w-full py-3.5 bg-gradient-to-r from-rose-600 via-pink-600 to-rose-600 hover:from-rose-500 hover:to-pink-500 font-black rounded-2xl shadow-xl shadow-rose-600/40 transition-all transform hover:scale-[1.02] active:scale-95 text-base border border-rose-400/40">
-                شغلي الأغنية وبدء الاحتفال! 🎶🥳🎉
-            </button>
-        </div>
 
     </div>
 
@@ -269,6 +261,8 @@
 
             if (pageNum === 5) {
                 startCounters();
+                const music = document.getElementById('bg-music');
+                music.play().catch(e => console.log("Auto-play prevented by browser"));
             }
         }
 
@@ -311,14 +305,12 @@
         }
 
         function startCounters() {
-            // العداد الأول: من تاريخ 20 أكتوبر 2024 وإلى مالا نهاية
             const startDate = new Date("2024-10-20");
             const now = new Date();
             const diffTime1 = Math.abs(now - startDate);
             const diffDays1 = Math.floor(diffTime1 / (1000 * 60 * 60 * 24));
-            document.getElementById('counter-1').innerText = `${diffDays1} يوم من الحب والسعادة (والعمر كله سوا ❤️)`;
+            document.getElementById('counter-1').innerText = `${diffDays1} يوم من الحب والسعادة (العمر كله سوا ❤️)`;
 
-            // العداد الثاني: لحد تاريخ الخطوبة 5 نوفمبر 2027
             const targetDate = new Date("2027-11-05");
             const diffTime2 = targetDate - now;
             if (diffTime2 > 0) {
@@ -327,12 +319,6 @@
             } else {
                 document.getElementById('counter-2').innerText = `جه أحلى يوم في عمر حمودي خلاص! 🥰💍`;
             }
-        }
-
-        function playMusicAndCelebrate() {
-            const music = document.getElementById('bg-music');
-            music.play().catch(e => console.log(e));
-            alert('كل سنة وأنتِ طيبة يا أجمل حاجة حصلت في عمري كله! ربنا يديمك ليا يا أميرة قلبي ❤️🎉');
         }
     </script>
 </body>
